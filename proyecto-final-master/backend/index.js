@@ -19,10 +19,21 @@ if (!admin.apps.length) {
   admin.app(); // Si ya está inicializado, usar la instancia existente
 }
 
+
+app.use(
+  express.static(path.join(__dirname, "../frontend/mi-primer-app/build"))
+);
+
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../frontend/mi-primer-app/build", "index.html")
+  );
+});
+
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors({ origin: "http://localhost:3001" }));
+
 app.use(express.json());
 
 // Rutas públicas (sin necesidad de autenticación)
