@@ -1,9 +1,13 @@
 require("dotenv").config({ path: "../.env" });
 const { Sequelize } = require("sequelize");
 
-const connection = new Sequelize(process.env.MYSQL_URL, {
-  dialect: process.env.DB_DIALECT || "mysql",
-});
+const connection = new Sequelize(
+  process.env.MYSQL_URL,
+  {
+    dialect:"mysql",
+    logging:false
+  }
+);
 
 connection
   .authenticate()
